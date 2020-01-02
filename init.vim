@@ -1,0 +1,539 @@
+"=============================================================================="
+"                                  Content                                     "
+"=============================================================================="
+"       01. Vundle.............................................vim_config_vundle
+"       02. Plugin Settings...........................vim_config_plugin_settings
+"       03. General...........................................vim_config_general
+"       04. Colors.............................................vim_config_colors
+"       05. Files/Buffers...............................vim_config_files_buffers
+"       06. Tabbing...........................................vim_config_tabbing
+"       07. Auto Commands...............................vim_config_auto_commands
+"       08. Key Mappings.................................vim_config_key_mappings
+"       09. Functions.......................................vim_config_functions
+"       10. Notes...............................................vim_config_notes
+
+"=============================================================================="
+"                                   Vundle                                     "
+"=============================================================================="
+"                                                              vim_config_vundle
+
+filetype on                          " Auto recognize filetype
+
+" Set runtimepath to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+" Fancy file-tree
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+" Tagbar
+Plugin 'majutsushi/tagbar'
+
+" Fugitive Git plugin
+Plugin 'tpope/vim-fugitive'
+
+" Auto completition
+Plugin 'ervandew/supertab'
+
+" Smooth scroll
+Plugin 'yuttie/comfortable-motion.vim'
+
+" Fancy status line
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+
+" Status line for tmux
+Plugin 'edkolev/tmuxline.vim'
+
+" Color schemes
+Plugin 'w0ng/vim-hybrid'
+
+" Better vimdiff
+Plugin 'rickhowe/diffchar.vim'
+
+" C++ highlights
+Plugin 'octol/vim-cpp-enhanced-highlight'
+
+" Fun stuff
+" Plugin 'johngrib/vim-game-code-break'
+" Plugin 'johngrib/vim-game-snake'
+
+call vundle#end()
+filetype plugin indent on
+
+"=============================================================================="
+"                                Plugin Settings                               "
+"=============================================================================="
+"                                                     vim_config_plugin_settings
+
+" The NERD Tree
+"---------------
+let NERDTreeMapOpenInTab = 't'              " Open file in tab with t key
+let g:NERDTreeDirArrowExpandable = '+'      " Sign to show expandable nodes
+let g:NERDTreeDirArrowCollapsible = '~'     " Sign to show Collapsible nodes
+let NERDTreeNodeDelimiter = "\t"
+let NERDTreeMinimalUI = 1                   " Disable 'Press ? for help'
+
+" The NERD Tree Git plugin
+" ------------------------
+
+" Tagbar
+" ------
+let g:tagbar_autoclose = 1              " Close tagbar when tag is selected
+let g:tagbar_sort = 0                   " Sort tags by order in file
+let g:tagbar_show_linenumbers = 1       " Show relative position of tag
+let g:tagbar_iconchars = ['+', '~']     " Icons used to indicate folds
+let g:tagbar_autoshowtag = 1            " Unfold to current tag if its inside
+                                        " of a closed fold
+
+" Supertab
+" --------
+let g:SuperTabMappingTabLiteral = '<leader-tab>'    " Space-Tab inserts tab
+                                                    " instead of completition
+
+let g:SuperTabCrMapping = 1                         " Finish completition with
+                                                    " enter key
+
+" Comfortable motion
+" ------------------
+let g:comfortable_motion_no_default_key_mappings = 1    " Disable default maps
+
+" VimAirline
+" ----------
+let g:airline#extensions#tabline#enable = 1     " TODO: Tabline not working properly, ugly
+let g:airline_powerline_fonts = 0
+
+" TmuxLine
+" ---------
+let g:tmuxline_powerline_separators = 0
+let g:tmuxline_preset = {
+        \'a'    : '#h',
+        \'win'  : '#I',
+        \'cwin' : ['#I', '#W'],
+        \'z'    : '%R'
+        \}
+
+" C++ Highligth
+" -------------
+let g:cpp_class_scope_highlight = 1         " Class scope highlight
+let g:cpp_member_variable_highlight = 1     " Member variables highlight
+let g:cpp_concepts_highlight = 1
+
+"=============================================================================="
+"                                   General                                    "
+"=============================================================================="
+"                                                             vim_config_general
+
+let mapleader = ' '         " Set <LEADER> command prefix
+let g:mapleader = ' '
+
+set history=9000            " Must be set after nocompatible
+set title                   " Terminal window title follows vim title
+
+set autoread                " Update file if its changed from the outside
+set modelines=0             " Modelines allow you to set variables specific to
+                            " a file.
+
+" set showmode                " Prints --INSERT , --VISUAL.
+set showcmd                 " ???
+
+set wildmenu                " Enable autocompletion with <TAB> for commands
+set wildignore=*.o,*~,*.pyc " Ignore compiled files
+
+set so=7                    " 7 lines always visible above and below the cursor
+
+set ruler                   " Show current position
+set nuw=1
+
+set cmdheight=2             " Command bar height set to 2
+
+set backspace=eol,start,indent      " Configure backspace, so it works as it
+                                    " should.
+
+set list                    " Show characters instead of whitespaces
+set listchars=tab:\|\ ,space:.,extends:#,nbsp:.
+
+set ignorecase              " Case insensitive searching
+set smartcase               " When searching try to be smart about cases
+
+set hlsearch                " Highlight search results
+set incsearch               " Increment search
+
+set showmatch               " Show matching brackets whn text indicator is
+                            " over them.
+set mat=2                   " How many tenths of a second to blink when
+                            " matching brackets
+
+set diffopt+=vertical       " Fugitive Gdiff uses vertical split
+
+au FileType qf wincmd J     " QuickFix window full width when vertical splits
+
+if executable('ag')                     " If 'ag' is available in PATH
+    set grepprg=ag\ --vimgrep\ -r\ $*   " grep is done with it
+    set grepformat=%f:%l:%c:%m          " Result format
+endif
+
+"=============================================================================="
+"                                    Colors                                    "
+"=============================================================================="
+"                                                              vim_config_colors
+
+syntax enable
+
+set t_Co=256                " Enable 256 color terminal
+
+colorscheme hybrid         " Set colorscheme, needs to be installed
+set background=dark
+
+set colorcolumn=120          " Color the 120th character in every line
+
+"=============================================================================="
+"                                Files/Buffers                                 "
+"=============================================================================="
+"                                                       vim_config_files_buffers
+
+set encoding=utf8           " Set UTF-8 as standard encoding
+
+set nobackup
+set nowb
+set noswapfile
+
+set hidden      " Hides buffer instead of closing them. (Don't have to save
+                " before opening new file)
+
+"=============================================================================="
+"                                   Tabbing                                    "
+"=============================================================================="
+"                                                             vim_config_tabbing
+
+set expandtab               " Use spaces instead of tab
+set smarttab                " Tabbing watches for indentation
+set shiftwidth=4            " 1 tab == 4 spaces
+set tabstop=4               " Spacecount for tab
+
+set tw=500                  " Linebreak on 500 characters
+
+set noautoindent
+set smartindent
+
+set nowrap                  " Display a line in one line, even if its too long
+
+"=============================================================================="
+"                                 AutoCommands                                 "
+"=============================================================================="
+"                                                       vim_config_auto_commands
+
+autocmd BufEnter * setlocal number
+autocmd BufEnter * setlocal relativenumber
+
+autocmd Bufleave * setlocal number
+autocmd Bufleave * setlocal relativenumber
+
+autocmd BufWrite *.* :call DeleteTrailingWS()
+
+" Close Vim if the only window left open is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Highlight all occurance of word under cursor
+autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
+"=============================================================================="
+"                                 KeyMappings                                  "
+"=============================================================================="
+"                                                        vim_config_key_mappings
+
+" General remaps
+" --------------
+" Disable arrow keys
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+inoremap <Up> <NOP>
+inoremap <Down> <NOP>
+inoremap <Left> <NOP>
+inoremap <Right> <NOP>
+
+" Save and exit to normal mode
+inoremap <leader>q <Esc>:w<cr>
+
+" Close pane in normal mode
+noremap <leader>q <Esc>:q<cr>
+
+" Add closing braces
+inoremap { {}<Esc>i
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
+inoremap " ""<Esc>i
+inoremap ' ''<Esc>i
+
+" Jump to closing braces
+noremap <leader>e   %
+
+" Yank, Select, Delete till EOL
+nnoremap Y y$
+nnoremap V v$
+nnoremap D d$
+
+" Move lines with ALT+[j,k]
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo``>my`<mzgv`yo`z
+
+nnoremap N *
+
+" Pane usage remaps
+" -----------------
+" Create panes
+map <leader>\|  :vsplit<cr>
+map <leader>-   :split<cr>
+
+" Move between panes
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-h> <C-w>h
+map <C-l> <C-w>l
+
+" Swap panes
+map <C-x> <C-w>x
+
+" Zoom on pane
+nnoremap <C-w>z <c-w>_ \| <c-w>\|
+
+" Resize pane
+nnoremap <M-w> <C-W>5+
+nnoremap <M-s> <C-w>5-
+nnoremap <M-a> <C-W>5<
+nnoremap <M-d> <C-W>5>
+
+" Tab usage remaps
+" ----------------
+map <leader>c   :tabnew<cr>
+map <leader>xy  :tabclose<cr>
+map <leader>n   :tabnext<cr>
+map <leader>p   :tabprevious<cr>
+map <leader>t   :tabs<cr>
+
+" Plugin usage remaps
+" -------------------
+nnoremap <silent> <leader>f      :NERDTreeToggle<cr>
+nnoremap <silent> <leader>r      :NERDTreeFind<cr>
+nnoremap <silent> <leader>g      :TagbarToggle<cr>
+
+" Toggle quickfix window
+map <silent> <F10> :Tqfw<CR>
+
+" Grep current word in pwd. NOTE: Dg <valami> - searches for 'valami' (+regexp)
+noremap <silent> <C-f> :Dgc<CR>
+
+" Smooth scroll
+nnoremap <silent> <leader>k     :call comfortable_motion#flick(-100)<CR>
+nnoremap <silent> <leader>j     :call comfortable_motion#flick(100)<CR>
+
+" My function remaps
+" ------------------
+" Switch between headers and source files (C/C++)
+autocmd FileType c,cpp nnoremap <F1> :call SwitchSourceHeader()<CR>
+
+"=============================================================================="
+"                                  Functions                                   "
+"=============================================================================="
+"                                                           vim_config_functions
+
+"Delete trailing white space
+function! DeleteTrailingWS()
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
+endfunction
+
+" Search pattern in files in directory of current file
+function! GrepInDirectory(pattern, target)
+    execute("cexpr []")
+    execute("silent grep! ".a:pattern." ".a:target)
+    execute("copen")
+endfunction
+command! -nargs=+ Dg call GrepInDirectory('<args>', '$PWD')
+command! -nargs=0 Dgc call GrepInDirectory('<cword>', '$PWD')
+
+" Toggle quickfix window
+function! ToggleQuickFixWindow()
+    for bnum in range(1, winnr('$'))
+        if getwinvar(bnum, '&filetype') == 'qf'
+            cclose
+            return
+        endif
+    endfor
+    copen
+endfunction
+command! -nargs=0 Tqfw call ToggleQuickFixWindow()
+
+" Returns true if paste mode is enabled
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    en
+    return ''
+endfunction
+
+" Localize files by name with different methods (buffers, files)
+function! CheckFile(filename)
+    let l:buf_name = bufname(a:filename)
+    if strlen(l:buf_name) > 0
+        execute("e ".l:buf_name)
+        return 1
+    else
+        let l:result = findfile(a:filename, $PWD."/**", 1)
+        if strlen(l:result) > 0
+            execute("e ".l:result)
+            return 1
+        endif
+    endif
+
+    return 0
+endfunction
+
+" Search current file with different extensions from current working directory and open it
+function! SearchFile(extensions)
+    let l:filename = expand("%:t:r")
+    for ext in a:extensions
+        if CheckFile(l:filename.".".ext) == 1
+            break
+        endif
+    endfor
+endfunction
+
+" Switch header to source and veca versa based on files for C/C++
+function! SwitchSourceHeader()
+    let l:source_extension = ["cpp", "cc", "cxx", "c"]
+    let l:header_extension = ["h", "hh", "hpp", "hxx"]
+
+    let l:current_extension = expand("%:e")
+    if index(l:source_extension, l:current_extension) >= 0
+         call SearchFile(l:header_extension)
+    elseif index(l:header_extension, l:current_extension) >= 0
+        call SearchFile(l:source_extension)
+    endif
+endfunction
+
+
+"=============================================================================="
+"                                    Notes                                     "
+"=============================================================================="
+"                                                               vim_config_notes
+
+" TODO: Cleanup
+" Install dependencies
+" --------------------
+"
+" 1. ag serch
+" ............
+"
+"   Mac:    brew install the_silver_searcher
+"   Linux:  apt-get install silversearcher-ag
+"           yum install the_silver_searcher
+"
+" 2. ctags
+" ........
+"
+"   Mac:    brew install ctags
+
+" ==============================================================================
+
+" Configure
+" ---------
+"
+" 1. Create symlink
+" .................
+"
+"   Note: This way you don't need to copy the ini file when changes happen in
+"   the repsitory
+"
+"   ln -s /path/to/repo/init.vim ~/.conf/nvim/init.vim
+"
+" 2. Terminal color setting
+" .........................
+"
+"   Set terminal to support 256 color. e.g. add the following to .profile
+"   if [ -e /usr/share/terminfo/x/xterm-256color ]; then
+"         export TERM='xterm-256color'
+"   else
+"         export TERM='xterm-color'
+"   fi
+
+" ==============================================================================
+
+" Useful links
+" ------------
+" http://vimcasts.org/blog/2013/02/habit-breaking-habit-making/
+"
+" Vim like chrome movement
+" http://tiny.cc/bovyzy
+"
+" Learning vim
+" http://vimgenius.com/
+" http://vim-advantures.com/
+
+" ==============================================================================
+
+" General
+" -------
+" nmap - normal mode map
+" vmap - visual mode map
+
+" Scrolling : Ctrl+e Ctrl+y
+
+" <silent> - The command is not displayed in the command line
+
+"   x   - Delete character under cursor
+"   dd  - Delete [count] lines
+"   D   - Delete till end of the line
+"   dw  - Delete till end of the word
+"   d0  - Delete till the begining of the line
+
+"   w   - Move to next word
+"   b   - Move to previous word
+"   0   - Move to the begining of the line
+"   G   - Move to the end of the line
+
+"   f<char>     -   Moves to the next occurance of char in the line
+"   fd<char>    -   Deletes the text till char
+
+"   C-h - Select pane to the right (no prefix needed)
+"   C-l - Select pane to the left (no prefix needed)
+
+"   Ctrl-w z    - Zoom on pane
+"   Ctrl-w =    - Zoom out pane
+
+"   <leader>q   - Save and exit insert mode
+
+" When copying code, you migth want to disable the dots with: [:set nolist]
+
+" Ctrl-h,j,k,l      - Move between windows
+
+" NERDTree
+" --------
+"   <leader>f   -       Toggle NERDTree
+"   I           -       Display hidden items
+"   s           -       Open file in horizontal split
+"   i           -       Open file in vertical split
+"   t           -       Open file in new tab
+
+" Tagbar
+" ------
+"   <leader>g   -       Toggle Tagbar
+
+" Fugitive
+" --------
+" How to commit from vim:
+"   1 :Gstatus
+"   2 <c-n> to move between files
+"   3 Stage/Unstage file via -
+"   4 Start commit via cc
+"   5 Create commit message, and close tile
+"   6 :Gcommit
