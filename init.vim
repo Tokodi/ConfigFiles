@@ -50,12 +50,14 @@ Plugin 'edkolev/tmuxline.vim'
 
 " Color schemes
 Plugin 'w0ng/vim-hybrid'
+Plugin 'morhetz/gruvbox'
 
 " Better vimdiff
 Plugin 'rickhowe/diffchar.vim'
 
 " C++ highlights
 Plugin 'octol/vim-cpp-enhanced-highlight'
+
 
 " Fun stuff
 " Plugin 'johngrib/vim-game-code-break'
@@ -126,7 +128,6 @@ let g:cpp_concepts_highlight = 1
 "                                   General                                    "
 "=============================================================================="
 "                                                             vim_config_general
-
 let mapleader = ' '         " Set <LEADER> command prefix
 let g:mapleader = ' '
 
@@ -162,6 +163,8 @@ set smartcase               " When searching try to be smart about cases
 set hlsearch                " Highlight search results
 set incsearch               " Increment search
 
+set guitablabel=%t          " Tabs show filename only
+
 set showmatch               " Show matching brackets whn text indicator is
                             " over them.
 set mat=2                   " How many tenths of a second to blink when
@@ -185,7 +188,8 @@ syntax enable
 
 set t_Co=256                " Enable 256 color terminal
 
-colorscheme hybrid         " Set colorscheme, needs to be installed
+" colorscheme hybrid         " Set colorscheme, needs to be installed
+colorscheme gruvbox         " Set colorscheme, needs to be installed
 set background=dark
 
 set colorcolumn=120          " Color the 120th character in every line
