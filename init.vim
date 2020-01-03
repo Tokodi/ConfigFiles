@@ -579,3 +579,7 @@ endfunction
 " https://github.com/zenbro/dotfiles/blob/master/.nvimrc#L151-L187
 " https://github.com/junegunn/dotfiles/blob/master/vimrc
 " https://www.reddit.com/r/neovim/comments/3oeko4/post_your_fzfvim_configurations/
+" https://www.youtube.com/watch?v=XA2WjJbmmoM
+"
+" TODO:
+"   - write dependencies, and check existance by code
