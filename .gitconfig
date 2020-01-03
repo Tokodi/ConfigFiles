@@ -1,0 +1,20 @@
+[user]
+    email = andras.tokodi@ericsson.com
+    name = Andras Tokodi
+[diff]
+    tool = vimdiff
+[color "diff"]
+    frag = blue
+    meta = white
+    new = green
+    old = red
+    whitespace = bold normal red
+[color]
+    ui = true
+[difftool]
+    prompt = false
+[alias]
+    d = difftool
+    l = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --decorate
+[core]
+	editor = vim
