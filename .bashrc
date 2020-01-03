@@ -18,5 +18,6 @@ export TERM='xterm-256color'
 # Nvim appimage should be stored here
 export PATH="~/Downloads/:$PATH"
 
-
+# If tmux is manually built, add it to the path
+export PATH="~/Downloads/tmux:$PATH"
 

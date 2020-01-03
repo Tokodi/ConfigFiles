@@ -4,3 +4,4 @@ if [ -x "$(command -v nvim.appimage)" ]; then
 fi
 
 alias ll="ls -la"
+alias oports='netstat -tulanp'

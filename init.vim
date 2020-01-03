@@ -38,6 +38,9 @@ Plugin 'tpope/vim-fugitive'
 " Auto completition
 Plugin 'ervandew/supertab'
 
+" Wicked fast fuzzy finder
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
 " Smooth scroll
 Plugin 'yuttie/comfortable-motion.vim'
 
@@ -58,10 +61,10 @@ Plugin 'rickhowe/diffchar.vim'
 " C++ highlights
 Plugin 'octol/vim-cpp-enhanced-highlight'
 
-
 " Fun stuff
 " Plugin 'johngrib/vim-game-code-break'
 " Plugin 'johngrib/vim-game-snake'
+" Plugin 'Tokodi/vim-game-bomber'
 
 call vundle#end()
 filetype plugin indent on
