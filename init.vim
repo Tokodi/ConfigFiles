@@ -19,6 +19,12 @@
 
 filetype on                          " Auto recognize filetype
 
+" Auto install Vundle
+if empty(glob('~/.vim/bundle/Vundle.vim'))
+    silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    autocmd VimEnter * PluginInstall
+endif
+
 " Set runtimepath to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -40,6 +46,7 @@ Plugin 'ervandew/supertab'
 
 " Wicked fast fuzzy finder
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
 
 " Smooth scroll
 Plugin 'yuttie/comfortable-motion.vim'
@@ -101,6 +108,10 @@ let g:SuperTabMappingTabLiteral = '<leader-tab>'    " Space-Tab inserts tab
 
 let g:SuperTabCrMapping = 1                         " Finish completition with
                                                     " enter key
+
+" FZF
+" ---
+let g:fzf_nvim_statusline = 0                       " Disable statusline overwriting
 
 " Comfortable motion
 " ------------------
@@ -247,6 +258,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " Highlight all occurance of word under cursor
 autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
+" FZF file preview window
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--layout=reverse', '--info=inline', '--preview', 'cat {}']}, <bang>0)
 "=============================================================================="
 "                                 KeyMappings                                  "
 "=============================================================================="
@@ -330,17 +344,30 @@ map <leader>t   :tabs<cr>
 " -------------------
 nnoremap <silent> <leader>f      :NERDTreeToggle<cr>
 nnoremap <silent> <leader>r      :NERDTreeFind<cr>
-nnoremap <silent> <leader>g      :TagbarToggle<cr>
-
-" Toggle quickfix window
-map <silent> <F10> :Tqfw<CR>
-
-" Grep current word in pwd. NOTE: Dg <valami> - searches for 'valami' (+regexp)
-noremap <silent> <C-f> :Dgc<CR>
+nnoremap <silent> <leader>h      :TagbarToggle<cr>
 
 " Smooth scroll
 nnoremap <silent> <leader>k     :call comfortable_motion#flick(-100)<CR>
 nnoremap <silent> <leader>j     :call comfortable_motion#flick(100)<CR>
+
+" Fugitive
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>ge :Gedit<CR>
+nnoremap <silent> <leader>gE :Gedit<space>
+nnoremap <silent> <leader>gr :Gread<CR>
+nnoremap <silent> <leader>gR :Gread<space>
+nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>gW :Gwrite!<CR>
+nnoremap <silent> <leader>gq :Gwq<CR>
+nnoremap <silent> <leader>gQ :Gwq!<CR>
+
+" FzF
+nnoremap <silent> <leader>F :Files<CR>
+nnoremap <silent> <leader>G :Tags<CR>
+nnoremap <silent> <leader>S :call SearchWordWithAg()<CR>
 
 " My function remaps
 " ------------------
@@ -428,6 +455,9 @@ function! SwitchSourceHeader()
     endif
 endfunction
 
+function! SearchWordWithAg()
+    execute 'Ag' expand('<cword>')
+endfunction
 
 "=============================================================================="
 "                                    Notes                                     "
@@ -544,3 +574,8 @@ endfunction
 "   4 Start commit via cc
 "   5 Create commit message, and close tile
 "   6 :Gcommit
+
+" TODO: learn more from these:
+" https://github.com/zenbro/dotfiles/blob/master/.nvimrc#L151-L187
+" https://github.com/junegunn/dotfiles/blob/master/vimrc
+" https://www.reddit.com/r/neovim/comments/3oeko4/post_your_fzfvim_configurations/
