@@ -5,6 +5,16 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
+# append to the history file, don't overwrite
+shopt -s histappend
+
+# setting history length
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and resize if neccessary
+shopt -s checkwinsize
+
 # Simple command prompt
 if [ "$HOSTNAME" = dockerhost ]; then
     PS1='\[\e[0;32m\][\w]$ \[\e[m\]'
