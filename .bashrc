@@ -18,6 +18,8 @@ shopt -s checkwinsize
 # Simple command prompt
 if [ "$HOSTNAME" = dockerhost ]; then
     PS1='\[\e[0;32m\][\w]$ \[\e[m\]'
+elif [ "$HOSTNAME" = raspberrypi ]; then
+    PS1='\[\e[0;31m\][\w]$ \[\e[m\]'
 else
     PS1='\[\e[1;33m\][\w]$ \[\e[m\]'
 fi
@@ -30,4 +32,3 @@ export PATH="~/Downloads/:$PATH"
 
 # If tmux is manually built, add it to the path
 export PATH="~/Downloads/tmux:$PATH"
-
