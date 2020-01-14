@@ -32,3 +32,6 @@ export PATH="~/Downloads/:$PATH"
 
 # If tmux is manually built, add it to the path
 export PATH="~/Downloads/tmux:$PATH"
+
+# If neovim is manually built, add it to the path
+export PATH="~/Downloads/neovim/build/bin:$PATH"
