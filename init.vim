@@ -43,6 +43,7 @@ Plugin 'tpope/vim-fugitive'
 
 " Auto completition
 Plugin 'ervandew/supertab'
+Plugin 'xavierd/clang_complete'
 
 " Wicked fast fuzzy finder
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -108,6 +109,10 @@ let g:SuperTabMappingTabLiteral = '<leader-tab>'    " Space-Tab inserts tab
 
 let g:SuperTabCrMapping = 1                         " Finish completition with
                                                     " enter key
+
+" Clang complete
+" --------------
+let g:clang_library_path='/usr/lib/libclang.so.10'
 
 " FZF
 " ---
