@@ -6,10 +6,9 @@ if [ $# -ne 1 ]; then
 fi
 
 IMAGE_NAME=$1
-HOSTNAME="dockerhost"
 
 docker run                  \
-    --hostname ${HOSTNAME}  \
     -ti                     \
+    -p 9091:9091            \
     ${IMAGE_NAME}           \
     bash

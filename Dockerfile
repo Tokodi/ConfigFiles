@@ -6,15 +6,26 @@ ENV HOSTNAME dockerhost
 RUN apk --no-cache add \
         bash \
         neovim \
+        make \
+        sudo \
         gcc \
+        g++ \
         git \
         cmake \
+        curl \
         boost-dev \
         tmux \ 
         shadow \
         htop \
+        openssl \
+        python2 \
+        python2-dev \
+        spdlog \
         python3 \
-        clang
+        python3-dev \
+        py3-pip \
+        clang  \
+        musl-dev
 
 # Create user
 RUN useradd -ms /bin/bash tokodiandris
@@ -40,3 +51,6 @@ RUN ln -s /home/tokodiandris/repos/ConfigFiles/init.vim /home/tokodiandris/.conf
 
 # Install vim plugins
 RUN nvim +PluginInstall +qall
+
+# Install python support for nvim (clang_complete requirement)
+RUN pip install neovim && pip3 install neovim

@@ -20,4 +20,5 @@ Set symlinks:
 # Bash
     TODO
 
-
+# Build docker image
+docker build -t tokodiandris/neovim .
