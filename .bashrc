@@ -5,11 +5,14 @@
 # Support 256 colors if possible
 export TERM='xterm-256color'
 
-# Set promt color and format
-
 # Handy way to keep aliases in a separate file
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
+fi
+
+# Handy way to keep exports in a separate file
+if [ -f ~/.bash_exports ]; then
+    . ~/.bash_exports
 fi
 
 ############################################################
@@ -30,8 +33,6 @@ HISTFILESIZE=2000
 ############################################################
 
 PS1='\[\e[1;33m\][\w]$ \[\e[m\]' # Yellow
-
-# TODO: Different color for different hosts
 #PS1='\[\e[0;32m\][\w]$ \[\e[m\]' # Green
 #PS1='\[\e[0;31m\][\w]$ \[\e[m\]' # Red
 
@@ -39,10 +40,8 @@ PS1='\[\e[1;33m\][\w]$ \[\e[m\]' # Yellow
 # https://www.howtogeek.com/307701/how-to-customize-and-colorize-your-bash-prompt/
 
 ############################################################
-#                    Required packages                     #
+#                      Required packages                   #
 ############################################################
-
-# TODO: Auto install based on host OS
 
 # Midnight Commander
 # https://midnight-commander.org

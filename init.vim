@@ -227,8 +227,8 @@ set hidden      " Hides buffer instead of closing them. (Don't have to save
 
 set expandtab               " Use spaces instead of tab
 set smarttab                " Tabbing watches for indentation
-set shiftwidth=4            " 1 tab == 4 spaces
-set tabstop=4               " Spacecount for tab
+set shiftwidth=2            " 1 tab == 2 spaces
+set tabstop=2               " Spacecount for tab
 
 set tw=500                  " Linebreak on 500 characters
 
@@ -244,9 +244,6 @@ set nowrap                  " Display a line in one line, even if its too long
 
 autocmd BufEnter * setlocal number
 autocmd BufEnter * setlocal relativenumber
-
-autocmd Bufleave * setlocal number
-autocmd Bufleave * setlocal relativenumber
 
 autocmd BufWrite *.* :call DeleteTrailingWS()
 
