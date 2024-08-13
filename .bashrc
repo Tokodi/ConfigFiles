@@ -32,9 +32,15 @@ HISTFILESIZE=2000
 #                           Promt                          #
 ############################################################
 
-PS1='\[\e[1;33m\][\w]$ \[\e[m\]' # Yellow
-#PS1='\[\e[0;32m\][\w]$ \[\e[m\]' # Green
-#PS1='\[\e[0;31m\][\w]$ \[\e[m\]' # Red
+hostname=$(hostname)
+
+if [ "$hostname" = "raspberrypi" ]; then
+    PS1='\[\e[38;5;197m\][\w]$\[\e[m\] ' # Raspberry red
+elif [ -f /.dockerenv ]; then
+    PS1='\[\e[38;5;39m\][\w]$\[\e[m\] ' # Docker blue
+else
+    PS1='\[\e[1;33m\][\w]$\[\e[m\] ' # Default yellow
+fi
 
 # NOTES
 # https://www.howtogeek.com/307701/how-to-customize-and-colorize-your-bash-prompt/

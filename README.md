@@ -2,6 +2,9 @@
 
 This repository contains my development environment configuration files.
 
+#TODO(atokodi):
+* Create script to set symlinks automatocally
+
 Set symlinks:
 * ln -s /path/to/repo/.bashrc /path/to/home/.bashrc
 * ln -s /path/to/repo/.bash_aliases /path/to/home/.bash_aliases
