@@ -73,3 +73,7 @@ fi
 # https://github.com/universal-ctags/ctags
 # apt install ctags
 # brew install ctags
+
+# Created by `pipx` on 2024-11-05 14:25:38
+export PATH="$PATH:/Users/andrastokodi/.local/bin"
+. "$HOME/.cargo/env"

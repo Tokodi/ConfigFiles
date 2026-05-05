@@ -14,3 +14,8 @@ alias ll='ls -la'
 alias mkdir='mkdir -p'
 alias cd..='cd ..'
 alias ..='cd ..'
+
+# Secret exports. Add everything that should not be uploaded to uploaded to github...
+if [ -f ~/.bash_secret_exports ]; then
+    . ~/.bash_secret_exports
+fi

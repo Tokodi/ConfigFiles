@@ -66,6 +66,12 @@ Plugin 'rickhowe/diffchar.vim'
 " C++ highlights
 Plugin 'octol/vim-cpp-enhanced-highlight'
 
+" AI
+"Plugin 'https://github.com/pasky/claude.vim'
+
+"Plugin 'atokodi/vimai'
+Plugin 'atokodi/vim-claude'
+
 " Fun stuff
 " Plugin 'johngrib/vim-game-code-break'
 " Plugin 'johngrib/vim-game-snake'
@@ -132,6 +138,15 @@ let g:cpp_class_scope_highlight = 1         " Class scope highlight
 let g:cpp_member_variable_highlight = 1     " Member variables highlight
 let g:cpp_concepts_highlight = 1
 
+" Claude config
+" -------------
+"let g:claude_map_implement = "<Leader>ci"
+"let g:claude_map_open_chat = "<Leader>cc"
+"let g:claude_map_send_chat_message = "<Leader>cs"
+"let g:claude_map_cancel_response = "<Leader>cx"
+
+let g:claude_log_level = 0
+
 "=============================================================================="
 "                                   General                                    "
 "=============================================================================="
@@ -175,7 +190,7 @@ set smartcase               " When searching try to be smart about cases
 set hlsearch                " Highlight search results
 set incsearch               " Increment search
 
-set guitablabel=%t          " Tabs show filename only
+"set guitablabel=%t          " Tabs show filename only
 
 set showmatch               " Show matching brackets whn text indicator is
                             " over them.
@@ -344,23 +359,20 @@ nnoremap <silent> <leader>k     :call comfortable_motion#flick(-100)<CR>
 nnoremap <silent> <leader>j     :call comfortable_motion#flick(100)<CR>
 
 " Fugitive
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gc :Gcommit<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
-nnoremap <silent> <leader>ge :Gedit<CR>
-nnoremap <silent> <leader>gE :Gedit<space>
-nnoremap <silent> <leader>gr :Gread<CR>
-nnoremap <silent> <leader>gR :Gread<space>
-nnoremap <silent> <leader>gw :Gwrite<CR>
-nnoremap <silent> <leader>gW :Gwrite!<CR>
-nnoremap <silent> <leader>gq :Gwq<CR>
-nnoremap <silent> <leader>gQ :Gwq!<CR>
+nnoremap <silent> <leader>gg :vertical Git<CR>
+nnoremap <silent> <leader>gs :vertical Git status<CR>
+nnoremap <silent> <leader>gd :vertical Git diff<CR>
+nnoremap <silent> <leader>gc :vertical Git commit<CR>
+nnoremap <silent> <leader>gb :vertical Git blame<CR>
 
 " FzF
 nnoremap <silent> <leader>F :Files<CR>
 nnoremap <silent> <leader>G :Tags<CR>
 nnoremap <silent> <leader>S :call SearchWordWithAg()<CR>
+
+" vimrc edit mappings
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
 
 " My function remaps
 " ------------------
